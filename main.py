@@ -45,9 +45,9 @@ def extract_manga_details(query):
         }
         
         manga_list.append(manga_details)
-        
-        # Log the details
-        logger.info(manga_details)
+    
+    # Log the entire list
+    logger.info(manga_list)
     
     return manga_list
 
