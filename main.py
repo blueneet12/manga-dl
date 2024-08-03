@@ -1,7 +1,12 @@
 from bs4 import BeautifulSoup
 import requests
+import logging
 
 def extract_manga_details(query):
+    # Setup logging
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+    logger = logging.getLogger()
+
     url = f"https://manganato.com/search/story/{query}"
     response = requests.get(url)
     soup = BeautifulSoup(response.content, "html.parser")
@@ -40,11 +45,12 @@ def extract_manga_details(query):
         }
         
         manga_list.append(manga_details)
+        
+        # Log the details
+        logger.info(manga_details)
     
     return manga_list
 
 # Example usage
 query = "bleach"
 manga_details = extract_manga_details(query)
-for manga in manga_details:
-    print(manga)
